@@ -33,6 +33,7 @@ class BackgroundCosmology{
 
     // Splines to be made
     Spline eta_of_x_spline{"eta"};
+    Spline t_of_x_spline{"t"};
 
 
 
@@ -54,18 +55,20 @@ class BackgroundCosmology{
 
     // Do all the solving
     void solve();
-
+    void solve_t();
     // Output some results to file
     void output(const std::string filename) const;
 
     // Get functions that we must implement
     double eta_of_x(double x) const;
+    double t_of_x(double x) const;
     double H_of_x(double x) const;
     double dHdx_of_x(double x) const;
     double ddHddx_of_x(double x) const;
     double Hp_of_x(double x) const;
     double dHpdx_of_x(double x) const;
     double ddHpddx_of_x(double x) const;
+
     double get_OmegaB(double x = 0.0) const;
     double get_OmegaM(double x = 0.0) const;
     double get_OmegaR(double x = 0.0) const;
@@ -75,10 +78,20 @@ class BackgroundCosmology{
     double get_OmegaLambda(double x = 0.0) const;
     double get_OmegaK(double x = 0.0) const;
     double get_OmegaMnu(double x = 0.0) const;
+
+    double get_z(double x) const;
+    double get_dA( double x=0) const;
+    double get_dL( double x=0) const;
+    double get_chi( double x=0) const;
     double get_H0() const;
     double get_h() const;
     double get_Neff() const;
     double get_TCMB(double x = 0.0) const;
+
+    double eta_Hp_c(double x = 0.0) const;
+    double t_of_0(double x = 0.0) const;
+    double time_today(double x = 0.0) const;
+
 };
 
 #endif

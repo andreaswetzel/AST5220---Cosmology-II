@@ -26,7 +26,7 @@ int main(int argc, char **argv){
   //double Hp = a*Constants.H0_over_h;
 
   // Recombination parameters
-  double Yp          = 0.245;
+  double Yp          = 0.0;
 
   // Power-spectrum parameters
   double A_s         = 2.1e-9;
@@ -40,13 +40,13 @@ int main(int argc, char **argv){
   // Set up and solve the background
   BackgroundCosmology cosmo(h, OmegaB, OmegaCDM, OmegaK, Neff, TCMB);
   cosmo.solve();
+  cosmo.solve_t();
   cosmo.info();
   cosmo.get_OmegaLambda(0);
   // Output background evolution quantities
   cosmo.output("cosmology.txt");
 
   // Remove when module is completed
-  return 0;
 
   //=========================================================================
   // Module II

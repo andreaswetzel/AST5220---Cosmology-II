@@ -14,33 +14,34 @@ class RecombinationHistory{
 
     // The cosmology we use
     BackgroundCosmology *cosmo = nullptr;
-    
+
     // Helium fraction
     double Yp;
- 
+    double H0;
+
     // The start and end points for recombination arrays (can be modified)
     const double x_start  = Constants.x_start;
     const double x_end    = Constants.x_end;
-    
+
     // Numbers of points of Xe,ne array (modify as you see fit)
     const int npts_rec_arrays = 4000;
-  
+
     // Xe for when to switch between Saha and Peebles
     const double Xe_saha_limit = 0.99;
 
     //===============================================================
     // [1] Computation of Xe (Saha and Peebles equation)
     //===============================================================
- 
+
     // Compute Xe from the Saha equation
     std::pair<double,double> electron_fraction_from_saha_equation(double x) const;
-    
+
     // Right hand side of the dXedx Peebles equation
     int rhs_peebles_ode(double x, const double *y, double *dydx);
-    
-    // Solve for Xe 
+
+    // Solve for Xe
     void solve_number_density_electrons();
-    
+
     //===============================================================
     // [2] Compute tau and visibility functions
     //===============================================================
@@ -49,21 +50,27 @@ class RecombinationHistory{
     void solve_for_optical_depth_tau();
 
     // Splines contained in this class
-    Spline log_Xe_of_x_spline{"Xe"};
-    Spline tau_of_x_spline{"tau"}; 
-    Spline g_tilde_of_x_spline{"g"};  
+    Spline Xe_of_x_spline{"Xe"};
+    Spline ne_of_x_spline{"ne"};
+    Spline tau_of_x_spline{"tau"};
+    Spline g_tilde_of_x_spline{"g"};
+    Spline dtaudx_spline{"dtaudx"};
+    Spline Xe_tmp_spline{"Xe_tmp"};
+
+
+    Spline Xe_saha_spline{"Xe_saha"};
 
   public:
 
     // Construtors
     RecombinationHistory() = delete;
     RecombinationHistory(
-        BackgroundCosmology *cosmo, 
+        BackgroundCosmology *cosmo,
         double Yp);
 
     // Do all the solving
     void solve();
-    
+
     // Print some useful info about the class
     void info() const;
 
@@ -78,8 +85,23 @@ class RecombinationHistory{
     double dgdx_tilde_of_x(double x) const;
     double ddgddx_tilde_of_x(double x) const;
     double Xe_of_x(double x) const;
-    double ne_of_x(double x) const;
+    double log_ne_of_x(double x) const;
     double get_Yp() const;
+
+    double get_x_decoupling() const;
+    double get_a_decoupling() const;
+    double get_z_decoupling() const;
+
+    double get_x_recombination() const;
+    double get_a_recombination() const;
+    double get_z_recombination() const;
+
+    double x_saha_predicton() const;
+    double a_saha_predicton() const;
+    double z_saha_predicton() const;
+
+    double Freeze_out_abundance() const;
+
 };
 
 #endif
