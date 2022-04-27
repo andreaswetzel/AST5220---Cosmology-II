@@ -125,6 +125,10 @@ void Perturbations::integrate_perturbations(){
     Vector x_tc              = Utils::linspace(x_start, x_end_tight_value, x_end_tight_idx);
 
 
+    std::cout<< "x_end_tight_value = " << x_end_tight_value<< "\n";
+    std::cout<< "x_end_tight_idx = " << x_end_tight_idx<< "\n";
+
+
     // The tight coupling ODE system
     ODESolver tc_ode;
     tc_ode.solve(dydx_tight_coupling, x_tc, y_tight_coupling_ini);
@@ -396,13 +400,14 @@ int Perturbations::get_tight_coupling_time(const double k) const{
     double Hp         = cosmo->Hp_of_x(x);
     double dtaudx     = rec->dtaudx_of_x(x);
     double max = 1.0;
+    double min_val;
 
     if(c*k/Hp < max){
-      max = c*k/Hp;
+      min_val = std::min(1.0,c*k/Hp);
     }
 
     // Finding value for idx_tight_coupling_end
-    if(abs(dtaudx) < 10.0*max || x > x_rec){
+    if(abs(dtaudx) < 10.0*min_val || x > x_rec){
       idx_tight_coupling_end = i;
       break;
     }
@@ -694,53 +699,6 @@ double Perturbations::get_Nu(const double x, const double k, const int ell) cons
 
 void Perturbations::info() const{
   std::cout << "\n";
-  std::cout << "Info about perturbations class:\n";
-  std::cout << "x_start:       " << x_start                << "\n";
-  std::cout << "x_end:         " << x_end                  << "\n";
-  std::cout << "n_x:     " << n_x              << "\n";
-  std::cout << "k_min (1/Mpc): " << k_min * Constants.Mpc  << "\n";
-  std::cout << "k_max (1/Mpc): " << k_max * Constants.Mpc  << "\n";
-  std::cout << "n_k:     " << n_k              << "\n";
-  if(Constants.polarization)
-    std::cout << "We include polarization\n";
-  else
-    std::cout << "We do not include polarization\n";
-  if(Constants.neutrinos)
-    std::cout << "We include neutrinos\n";
-  else
-    std::cout << "We do not include neutrinos\n";
-
-  std::cout << "Information about the perturbation system:\n";
-  std::cout << "ind_deltacdm:       " << Constants.ind_deltacdm         << "\n";
-  std::cout << "ind_deltab:         " << Constants.ind_deltab           << "\n";
-  std::cout << "ind_v_cdm:          " << Constants.ind_vcdm             << "\n";
-  std::cout << "ind_v_b:            " << Constants.ind_vb               << "\n";
-  std::cout << "ind_Phi:            " << Constants.ind_Phi              << "\n";
-  std::cout << "ind_start_theta:    " << Constants.ind_start_theta      << "\n";
-  std::cout << "n_ell_theta:        " << Constants.n_ell_theta          << "\n";
-  if(Constants.polarization){
-    std::cout << "ind_start_thetap:   " << Constants.ind_start_thetap   << "\n";
-    std::cout << "n_ell_thetap:       " << Constants.n_ell_thetap       << "\n";
-  }
-  if(Constants.neutrinos){
-    std::cout << "ind_start_nu:       " << Constants.ind_start_nu       << "\n";
-    std::cout << "n_ell_neutrinos     " << Constants.n_ell_neutrinos    << "\n";
-  }
-  std::cout << "n_ell_tot_full:     " << Constants.n_ell_tot_full       << "\n";
-
-  std::cout << "Information about the perturbation system in tight coupling:\n";
-  std::cout << "ind_deltacdm:       " << Constants.ind_deltacdm_tc      << "\n";
-  std::cout << "ind_deltab:         " << Constants.ind_deltab_tc        << "\n";
-  std::cout << "ind_v_cdm:          " << Constants.ind_vcdm_tc          << "\n";
-  std::cout << "ind_v_b:            " << Constants.ind_vb_tc            << "\n";
-  std::cout << "ind_Phi:            " << Constants.ind_Phi_tc           << "\n";
-  std::cout << "ind_start_theta:    " << Constants.ind_start_theta_tc   << "\n";
-  std::cout << "n_ell_theta:        " << Constants.n_ell_theta_tc       << "\n";
-  if(Constants.neutrinos){
-    std::cout << "ind_start_nu:       " << Constants.ind_start_nu_tc    << "\n";
-    std::cout << "n_ell_neutrinos     " << Constants.n_ell_neutrinos_tc << "\n";
-  }
-  std::cout << "n_ell_tot_tc:       " << Constants.n_ell_tot_tc         << "\n";
   std::cout << std::endl;
 }
 
