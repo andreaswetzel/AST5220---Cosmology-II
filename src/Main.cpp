@@ -74,8 +74,14 @@ int main(int argc, char **argv){
   pert.info();
 
   // Output perturbation quantities
-  double kvalue = 0.01 / Constants.Mpc;
-  pert.output(kvalue, "perturbations_k0.01.txt");
+  double kvalue01 = 0.1 / Constants.Mpc;
+  pert.output(kvalue01, "perturbations_k0.1.txt");
+
+  double kvalue001 = 0.01 / Constants.Mpc;
+  pert.output(kvalue001, "perturbations_k0.01.txt");
+
+  double kvalue0001 = 0.001 / Constants.Mpc;
+  pert.output(kvalue0001, "perturbations_k0.001.txt");
 
   // Remove when module is completed
   return 0;
