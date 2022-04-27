@@ -6,6 +6,7 @@
 #include "Perturbations.h"
 #include "PowerSpectrum.h"
 
+
 int main(int argc, char **argv){
   Utils::StartTiming("Everything");
 
@@ -61,7 +62,7 @@ int main(int argc, char **argv){
   rec.output("recombination.txt");
 
   // Remove when module is completed
-  return 0;
+    // return 0;
 
   //=========================================================================
   // Module III
@@ -73,7 +74,7 @@ int main(int argc, char **argv){
   pert.info();
 
   // Output perturbation quantities
-  double kvalue = 0.01 / Constants.Mpc;
+  double kvalue = 0.1 / Constants.Mpc;
   pert.output(kvalue, "perturbations_k0.01.txt");
 
   // Remove when module is completed
