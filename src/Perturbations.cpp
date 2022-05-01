@@ -125,14 +125,11 @@ void Perturbations::integrate_perturbations(){
     Vector x_tc              = Utils::linspace(x_start, x_end_tight_value, x_end_tight_idx);
 
 
-    std::cout<< "x_end_tight_value = " << x_end_tight_value<< "\n";
-    std::cout<< "x_end_tight_idx = " << x_end_tight_idx<< "\n";
-
 
     // The tight coupling ODE system
-    ODESolver tc_ode;
-    tc_ode.solve(dydx_tight_coupling, x_tc, y_tight_coupling_ini);
-    auto y_tight_coupling                = tc_ode.get_final_data();
+    ODESolver tight_coupling_ode;
+    tight_coupling_ode.solve(dydx_tight_coupling, x_tc, y_tight_coupling_ini);
+    auto y_tight_coupling                = tight_coupling_ode.get_final_data();
 
     //===================================================================
     // TODO: Full equation integration
@@ -153,8 +150,8 @@ void Perturbations::integrate_perturbations(){
     Vector x_after_tc = Utils::linspace(x_end_tight_value, x_end, n_x - x_end_tight_idx);
 
 
-    ODESolver after_tc_ode;
-    after_tc_ode.solve(dydx_array, x_after_tc, y_full_ini);
+    ODESolver after_tight_coupling_ode;
+    after_tight_coupling_ode.solve(dydx_array, x_after_tc, y_full_ini);
 
     //===================================================================
     // TODO: remember to store the data found from integrating so we can
@@ -174,8 +171,8 @@ void Perturbations::integrate_perturbations(){
     //===================================================================
 
 
-    Vector2D y_tc_transpose   = tc_ode.get_data_transpose();
-    Vector2D y_full_transpose = after_tc_ode.get_data_transpose();
+    Vector2D y_tc_transpose   = tight_coupling_ode.get_data_transpose();
+    Vector2D y_full_transpose = after_tight_coupling_ode.get_data_transpose();
 
 
     for(int ix = 0; ix < n_x; ix++){
@@ -688,9 +685,6 @@ double Perturbations::get_Theta(const double x, const double k, const int ell) c
 }
 double Perturbations::get_Theta_p(const double x, const double k, const int ell) const{
   return Theta_p_spline[ell](x,k);
-}
-double Perturbations::get_Nu(const double x, const double k, const int ell) const{
-  return Nu_spline[ell](x,k);
 }
 
 //====================================================
