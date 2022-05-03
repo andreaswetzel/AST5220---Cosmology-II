@@ -42,64 +42,6 @@ ST_001        = data001[:, 10]
 
 
 
-
-plt.plot(x, 4*theta_1,label='k=0.1[Mpc]')
-plt.plot(x, 4*theta_01,label='k=0.01[Mpc]')
-plt.plot(x, 4*theta_001,label='k=0.001[Mpc]')
-plt.legend()
-plt.title(r'$\delta_\gamma$')
-plt.xlabel(r'$x$')
-plt.ylabel(r'$\delta_\gamma(x,k)$')
-plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M3/delta_gamma.png')
-plt.show()
-
-
-plt.plot(x, -3*theta1_1,label='k=0.1[Mpc]')
-plt.plot(x, -3*theta1_01,label='k=0.01[Mpc]')
-plt.plot(x, -3*theta1_001,label='k=0.001[Mpc]')
-plt.legend()
-plt.title(r'$v_\gamma$')
-plt.xlabel(r'$x$')
-plt.ylabel(r'$v_\gamma(x,k)$')
-plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M3/v_gamma.png')
-plt.show()
-
-
-plt.plot(x, theta2_1,label='k=0.1[Mpc]')
-plt.plot(x, theta2_01,label='k=0.01[Mpc]')
-plt.plot(x, theta2_001,label='k=0.001[Mpc]')
-plt.legend()
-plt.title(r'$\Theta_2$')
-plt.xlabel(r'$x$')
-plt.ylabel(r'$\Theta_2$')
-plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M3/theta2.png')
-plt.show()
-
-
-
-plt.plot(x, phi_1,label='k=0.1[Mpc]')
-plt.plot(x, phi_01,label='k=0.01[Mpc]')
-plt.plot(x, phi_001,label='k=0.001[Mpc]')
-plt.legend()
-plt.title(r'$\Phi$')
-plt.xlabel(r'$x$')
-plt.ylabel(r'$\Phi(x,k)$')
-plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M3/phi.png')
-plt.show()
-
-
-plt.plot(x, psi_1,label='k=0.1[Mpc]')
-plt.plot(x, psi_01,label='k=0.01[Mpc]')
-plt.plot(x, psi_001,label='k=0.001[Mpc]')
-plt.legend()
-plt.title(r'$\Psi$')
-plt.xlabel(r'$x$')
-plt.ylabel(r'$\Psi(x,k)$')
-plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M3/psi.png')
-plt.show()
-
-
-plt.title(r'$\delta_{CDM},\delta_b$')
 plt.plot(x, delta_cdm_1,label=r'$\delta_{CDM}$ - k=0.1[Mpc]')
 plt.plot(x, delta_cdm_01,label=r'$\delta_{CDM}$ - k=0.01[Mpc]')
 plt.plot(x, delta_cdm_001,label=r'$\delta_{CDM}$ - k=0.001[Mpc]')
@@ -111,7 +53,7 @@ plt.legend()
 plt.title(r'$\delta_{CDM},\delta_b$')
 plt.xlabel(r'$x$')
 plt.ylabel(r'$\delta_{CDM}(x,k),\delta_b(x,k)$')
-plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M3/delta_.png')
+#plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M3/delta_.png')
 plt.show()
 
 
@@ -126,5 +68,49 @@ plt.legend()
 plt.title(r'$v_b, v_{CDM}$')
 plt.xlabel(r'$x$')
 plt.ylabel(r'$v_b(x,k), v_{CDM}(x,k)$')
-plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M3/v_.png')
+#plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M3/v_.png')
+plt.show()
+
+
+plt.plot(x, 4*theta_1,label='k=0.1[Mpc]')
+plt.plot(x, 4*theta_01,label='k=0.01[Mpc]')
+plt.plot(x, 4*theta_001,label='k=0.001[Mpc]')
+plt.legend()
+plt.title(r'$\delta_\gamma$')
+plt.xlabel(r'$x$')
+plt.ylabel(r'$\delta_\gamma(x,k)$')
+#plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M3/delta_gamma.png')
+plt.show()
+
+
+plt.plot(x, -3*theta1_1,label='k=0.1[Mpc]')
+plt.plot(x, -3*theta1_01,label='k=0.01[Mpc]')
+plt.plot(x, -3*theta1_001,label='k=0.001[Mpc]')
+plt.legend()
+plt.title(r'$v_\gamma$')
+plt.xlabel(r'$x$')
+plt.ylabel(r'$v_\gamma(x,k)$')
+#plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M3/v_gamma.png')
+plt.show()
+
+
+plt.plot(x, phi_1,label='k=0.1[Mpc]')
+plt.plot(x, phi_01,label='k=0.01[Mpc]')
+plt.plot(x, phi_001,label='k=0.001[Mpc]')
+plt.legend()
+plt.title(r'$\Phi$')
+plt.xlabel(r'$x$')
+plt.ylabel(r'$\Phi(x,k)$')
+#plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M3/phi.png')
+plt.show()
+
+
+plt.plot(x, psi_1,label='k=0.1[Mpc]')
+plt.plot(x, psi_01,label='k=0.01[Mpc]')
+plt.plot(x, psi_001,label='k=0.001[Mpc]')
+plt.legend()
+plt.title(r'$\Psi$')
+plt.xlabel(r'$x$')
+plt.ylabel(r'$\Psi(x,k)$')
+#plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M3/psi.png')
 plt.show()
