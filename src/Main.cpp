@@ -83,16 +83,15 @@ int main(int argc, char **argv){
   double kvalue0001 = 0.001 / Constants.Mpc;
   pert.output(kvalue0001, "perturbations_k0.001.txt");
 
-  // Remove when module is completed
-  return 0;
 
   //=========================================================================
   // Module IV
   //=========================================================================
 
-  PowerSpectrum power(&cosmo, &rec, &pert, A_s, n_s, kpivot_mpc);
+  PowerSpectrum power(&cosmo, &rec, &pert);
   power.solve();
   power.output("cells.txt");
+  power.output_theta_ell("theta_output.txt");
 
   // Remove when module is completed
   return 0;

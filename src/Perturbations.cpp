@@ -430,7 +430,7 @@ void Perturbations::compute_source_functions(){
 
       double dPhidx      = Phi_spline.deriv_x(x,k);
 
-      double Hp    = cosmo->Hp_of_x(x);
+      double Hp          = cosmo->Hp_of_x(x);
       double dHpdx       = cosmo->dHpdx_of_x(x);
       double ddHpddx     = cosmo->ddHpddx_of_x(x);
 
@@ -459,9 +459,6 @@ void Perturbations::compute_source_functions(){
 
   // Spline the source functions
   ST_spline.create(x_array, k_array, ST_array, "Source_Temp_x_k");
-  if(Constants.polarization){
-    SE_spline.create(x_array, k_array, SE_array, "Source_Pol_x_k");
-  }
 
   Utils::EndTiming("source");
 }
@@ -603,7 +600,7 @@ int Perturbations::rhs_full_ode(double x, double k, const double *y, double *dyd
   dThetadx[0] = -Constants.c*k/Hp*Theta[1] - dPhidx;
   dThetadx[1] = Constants.c*k/(3.0*Hp)*Theta[0] - 2.0*Constants.c*k/(3.0*Hp)*Theta[2] + Constants.c*k/(3.0*Hp)*Psi + dtaudx*(Theta[1] + v_b/3.0);
 
-  
+
   for(int ell = 2; ell < n_ell_theta - 1; ell++){
     dThetadx[ell] = ell*Constants.c*k/((2.0*ell+1.0)*Hp)*Theta[ell-1] - (ell+1.0)*Constants.c*k/((2.0*ell+1.0)*Hp)*Theta[ell+1] + dtaudx*Theta[ell];
     if(ell == 2){
