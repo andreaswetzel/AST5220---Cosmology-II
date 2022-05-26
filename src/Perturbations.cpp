@@ -435,7 +435,7 @@ void Perturbations::compute_source_functions(){
       double ddHpddx     = cosmo->ddHpddx_of_x(x);
 
 
-      double g     = rec->g_tilde_of_x(x);
+      double g           = rec->g_tilde_of_x(x);
       double dgdx        = rec->dgdx_tilde_of_x(x);
       double ddgddx      = rec->ddgddx_tilde_of_x(x);
 

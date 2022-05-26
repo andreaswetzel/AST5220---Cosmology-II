@@ -105,6 +105,8 @@ class PowerSpectrum {
     // Get P(k,x) for a given x in units of (Mpc)^3
     double get_matter_power_spectrum(const double x, const double k) const;
 
+    double get_k_eq() const;
+
     // Get the quantities we have computed
     double get_cell_TT(const double ell) const;
 
@@ -112,6 +114,7 @@ class PowerSpectrum {
     // Output Cells in units of l(l+1)/2pi (muK)^2
     void output(std::string filename) const;
     void output_theta_ell(std::string filename) const;
+    void output_matter(std::string filename) const;
 };
 
 #endif

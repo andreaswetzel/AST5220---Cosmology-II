@@ -263,15 +263,15 @@ double BackgroundCosmology::get_dA(double x) const{ //Finding dA
 }
 
 double BackgroundCosmology::get_dL(double x) const{ //Finding dL
-  return get_dA(x) / exp(2*x);
+  return get_dA(x) / exp(2.0*x);
 }
 
 double BackgroundCosmology::t_of_0(double x) const{
-  return t_of_x(0);
+  return t_of_x(0.0);
 }
 
 double BackgroundCosmology::time_today(double x) const{
-  return eta_of_x(0)/Constants.c;
+  return eta_of_x(0.0)/Constants.c;
 }
 
 double BackgroundCosmology::eta_Hp_c(double x) const{
@@ -324,8 +324,8 @@ void BackgroundCosmology::output(const std::string filename) const{
 
 
 
-  double age_today = t_of_x(0)/(pow(10,9)*365*24*60*60); //Universes age today
-  double CT_today = eta_of_x(0)/Constants.c/(pow(10,9)*365*24*60*60); //Conformal time today
+  double age_today = t_of_x(0.0)/(pow(10.0,9.0)*365*24*60*60); //Universes age today
+  double CT_today = eta_of_x(0.0)/Constants.c/(pow(10.0,9.0)*365*24*60*60); //Conformal time today
 
 
   std::cout << "omegaR " << OmegaR << "\n";

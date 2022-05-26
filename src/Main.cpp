@@ -92,7 +92,7 @@ int main(int argc, char **argv){
   power.solve();
   power.output("cells.txt");
   power.output_theta_ell("theta_output.txt");
-
+  power.output_matter("matter_output.txt");
   // Remove when module is completed
   return 0;
 

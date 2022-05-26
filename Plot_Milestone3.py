@@ -41,8 +41,9 @@ v_cdm_001     = data001[:, 9]
 ST_001        = data001[:, 10]
 
 
-
-plt.plot(x, delta_cdm_1,label=r'$\delta_{CDM}$ - k=0.1[Mpc]')
+plt.plot(x,ST_1)
+plt.show()
+'''plt.plot(x, delta_cdm_1,label=r'$\delta_{CDM}$ - k=0.1[Mpc]')
 plt.plot(x, delta_cdm_01,label=r'$\delta_{CDM}$ - k=0.01[Mpc]')
 plt.plot(x, delta_cdm_001,label=r'$\delta_{CDM}$ - k=0.001[Mpc]')
 plt.plot(x, np.abs(delta_b_1),'--',label=r'$\delta_b$ - k=0.1[Mpc]')
@@ -114,3 +115,4 @@ plt.xlabel(r'$x$')
 plt.ylabel(r'$\Psi(x,k)$')
 #plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M3/psi.png')
 plt.show()
+'''

@@ -112,7 +112,7 @@ Vector2D PowerSpectrum::line_of_sight_integration_single(
   Vector x      = Utils::linspace(xmin, xmax, N);
   double eta0   = cosmo->eta_of_x(0);
 
-  
+
   for(size_t ik = 0; ik < k_array.size(); ik++){
 
     //=============================================================================
@@ -226,14 +226,26 @@ double PowerSpectrum::get_matter_power_spectrum(const double x, const double k) 
   // TODO: Compute the matter power spectrum
   //=============================================================================
   double OmegaM  = cosmo->get_OmegaCDM() + cosmo->get_OmegaB();
-  double Phi     = pert->get_Phi(x, k);
+  double Phi     = pert->get_Phi(0, k);
   double H0      = cosmo->get_H0();
-  double Delta   = pow(Constants.c*k,2)*Phi*exp(x)/(1.5*OmegaM*pow(H0,2));
+
+  double  DeltaM = pow(Constants.c,2.0)*pow(k,2.0) * Phi / (3.0/2.0 * OmegaM*pow(exp(x),-1.0)*pow(H0,2.0));
+  double Delta   = pow(Constants.c*k,2)*Phi*exp(x)/(1.5*OmegaM*pow(H0,2.0));
 
 
-  pofk           = 2.0*pow(M_PI,2)/pow(k, 3.0)*primordial_power_spectrum(k)*pow(Delta,2);
+  // pofk           = 2.0*pow(M_PI,2.0)/pow(k, 3.0)*primordial_power_spectrum(k)*pow(abs(Delta),2.0);
+
+
+  pofk = pow(abs(DeltaM),2.0) * primordial_power_spectrum(k);
 
   return pofk;
+}
+
+double PowerSpectrum::get_k_eq() const{
+  double a_eq = cosmo->get_OmegaR()/(cosmo->get_OmegaB()+cosmo->get_OmegaCDM());
+  double x_eq = log(a_eq);
+  double k_eq = cosmo->Hp_of_x(x_eq) / Constants.c * Constants.Mpc / cosmo->get_h();
+  return k_eq;
 }
 
 //====================================================
@@ -268,7 +280,7 @@ void PowerSpectrum::output(std::string filename) const{
 
 
 void PowerSpectrum::output_theta_ell(std::string filename) const{
-  const int npts = 20000;
+  const int npts = 20000.0;
   std::ofstream fp(filename.c_str());
   auto k_array = exp(Utils::linspace(log(k_min), log(k_max), npts));
 
@@ -277,13 +289,31 @@ void PowerSpectrum::output_theta_ell(std::string filename) const{
 
     // 1
     fp << k * Constants.Mpc << " ";
+    fp << k * Constants.c/cosmo->get_H0() << " ";
 
     // 2: Theta_ell
+    fp << thetaT_ell_of_k_spline[4](k) << " ";
     fp << thetaT_ell_of_k_spline[19](k) << " ";
     fp << thetaT_ell_of_k_spline[24](k) << " ";
     fp << thetaT_ell_of_k_spline[32](k) << " ";
     fp << thetaT_ell_of_k_spline[42](k) << " ";
+
+    fp << cosmo->eta_of_x(0.0) << " ";
     fp << "\n";
   };
   std::for_each(k_array.begin(), k_array.end(), print_data);
+}
+
+
+void PowerSpectrum::output_matter(std::string filename) const{
+  // Print matter power spectrum:
+  std::ofstream fp(filename.c_str());
+  auto k_array = Utils::linspace(k_min, k_max, n_k);  // [Mpc]
+  auto print_P_data = [&](const double k) {
+    fp << k*Constants.Mpc/cosmo->get_h()                                  << " ";
+    fp << get_matter_power_spectrum(0.0, k) * 2 * pow(M_PI,2) /pow(Constants.Mpc/cosmo->get_h() * k,3.0)  << " ";
+    fp << get_k_eq() << " ";
+    fp << "\n";
+  };
+  std::for_each(k_array.begin(), k_array.end(), print_P_data);
 }
