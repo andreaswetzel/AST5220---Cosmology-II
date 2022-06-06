@@ -312,7 +312,7 @@ void BackgroundCosmology::output(const std::string filename) const{
   double z_rm = 1/a_rm - 1; //Redshift z in Radiotion matter equality
   double t_rm = t_of_x((x_rm))/(pow(10,9)*365*24*60*60); //t in Radiotion matter equality
 
-  double a_MDE_ = (pow(( (get_OmegaB(0)+get_OmegaCDM(0) ) / get_OmegaLambda(0)  ),(1./3))); //Scalefactor a in matter-dark energy equality
+  double a_MDE_ = (pow(( (get_OmegaB(0)+get_OmegaCDM(0) ) / get_OmegaLambda(0)  ),(1.0/3.0))); //Scalefactor a in matter-dark energy equality
   double x_MDE_ = log(a_MDE_); //x in matter-dark energy equality
   double z_MDE_ = 1/a_MDE_ - 1; //Redshift z in matter-dark energy equality
   double t_MDE_ = t_of_x(log(a_MDE_))/(pow(10,9)*365*24*60*60); //t in matter-dark energy equality
@@ -362,6 +362,7 @@ void BackgroundCosmology::output(const std::string filename) const{
     fp << t_of_x(x)        << " ";
     fp << ddHpddx_of_x(x) << " ";
     fp << H_of_x(x) << " ";
+    //fp << H_of_x(x) / (100*Constants.Mpc*Constants.km) << " ";
     fp << H0 << " ";
     fp << get_z(x) << " ";
     fp << get_dA(x)/(Constants.Mpc) << " ";

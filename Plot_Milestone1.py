@@ -78,32 +78,38 @@ a_mlam = ((get_OmegaB[idx]+get_OmegaCDM[idx]) / get_OmegaLambda[idx])**(1/3) #Ma
 a_acc = ((get_OmegaB[idx]+get_OmegaCDM[idx]) / (2*get_OmegaLambda[idx]))**(1/3) #Accelerating universe
 
 
+Hx_H0 = [] #H/H_0
+for i in range(len(H0)):
+    Hx_H0.append(float(H_of_x[i]/H0[i]))
 
+Hp_H0 = [] #H/H_0
+for i in range(len(H0)):
+    Hp_H0.append(float(Hp_of_x[i]/H0[i]))
 
-plt.plot(a,H_of_x)
-plt.ylabel(r"$H(a)$")
+plt.plot(a,Hx_H0)
+plt.ylabel(r"$\frac{H}{H_0}$")
 plt.xlabel('Scalefactor a')
 plt.title('Hubble Parameter')
-plt.vlines(a_rm,-1e-5,1e-5,linestyles ="dashed",label='Matter-Radiation equality',color='b')
-plt.vlines(a_mlam,-1e-5,1e-5,linestyles ="dashed",label='Matter-Dark energy equality',color='g')
-plt.vlines(a_acc,-1e-5,1e-5,linestyles ="dashed",label='Accelerating universe',color='r')
+plt.vlines(a_rm,-1e-1,1e10,linestyles ="dashed",label='Matter-Radiation equality',color='b')
+plt.vlines(a_mlam,-1e-1,1e10,linestyles ="dashed",label='Matter-Dark energy equality',color='g')
+plt.vlines(a_acc,-1e-1,1e10,linestyles ="dashed",label='Accelerating universe',color='r')
 plt.legend()
 plt.yscale("log")
 plt.xscale("log")
-plt.savefig("Hubble Parameter.png")
+#plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M1/Hubble Parameter.png')
 plt.show()
 
-plt.plot(a,Hp_of_x)
-plt.ylabel(r"$\mathcal{H}(a)$")
+plt.plot(a,Hp_H0)
+plt.ylabel(r"$\frac{\mathcal{H}}{H_0}$")
 plt.xlabel('Scalefactor a')
 plt.title('Scaled Hubble Parameter')
-plt.vlines(a_rm,1e-18,1e-11,linestyles ="dashed",label='Matter-Radiation equality',color='b')
-plt.vlines(a_mlam,1e-18,1e-11,linestyles ="dashed",label='Matter-Dark energy equality',color='g')
-plt.vlines(a_acc,1e-18,1e-11,linestyles ="dashed",label='Accelerating universe',color='r')
+plt.vlines(a_rm,1e0,1e5,linestyles ="dashed",label='Matter-Radiation equality',color='b')
+plt.vlines(a_mlam,1e-1,1e5,linestyles ="dashed",label='Matter-Dark energy equality',color='g')
+plt.vlines(a_acc,1e-1,1e5,linestyles ="dashed",label='Accelerating universe',color='r')
 plt.legend()
 plt.yscale("log")
 plt.xscale("log")
-plt.savefig('Scaled Hubble Parameter.png')
+#plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M1/Scaled Hubble Parameter.png')
 plt.show()
 
 
@@ -118,9 +124,6 @@ ddHp_Hp = [] # Second Derivative of Hp
 for i in range(len(Hp_of_x)):
     ddHp_Hp.append(float(ddHpddx_of_x[i]/Hp_of_x[i]))
 
-Hx_H0 = [] #H/H_0
-for i in range(len(H0)):
-    Hx_H0.append(float(H_of_x[i]/H0[i]))
 
 
 
