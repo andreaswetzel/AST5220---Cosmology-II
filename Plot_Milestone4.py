@@ -37,11 +37,12 @@ kch         = matter_data[:,0]
 MPS         = matter_data[:,1]
 k_eq        = matter_data[:,2]
 
+
 theta_values = [theta_6,theta_100,theta_200,theta_500,theta_1000]
 theta_label  = [r"$\ell=6$",r"$\ell=100$",r"$\ell=200$",r"$\ell=500$",r"$\ell=1000$"]
 ell_values   = [6,100,200,500,1000]
 
-'''plt.plot(CMB_ell,CMB_cell)
+plt.plot(CMB_ell,CMB_cell)
 plt.errorbar(low_TT_ell,low_TT_cell,np.array([low_TT_err_down,low_TT_err_up]),fmt='o',markersize=2,c='r')
 plt.errorbar(high_TT_ell,high_TT_cell,np.array([high_TT_err_down,high_TT_err_up]),fmt='o',markersize=2,c='r')
 plt.xscale('log')
@@ -50,7 +51,6 @@ plt.xlabel(r'Multipole ${\ell}$')
 plt.ylabel(r'$\ell(\ell+1)C_\ell$ $(\mu K)^2$')
 plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M4/CMB_PS.png')
 plt.show()
-'''
 
 
 
@@ -62,14 +62,14 @@ plt.axvline(x=100/eta0, ls='--', color='black')
 plt.axvline(x=200/eta0, ls='--', color='black')
 plt.axvline(x=500/eta0, ls='--', color='black')
 plt.axvline(x=1000/eta0, ls='--', color='black')
+plt.title(r'Transfer Function $\Theta_\ell(k)$')
 plt.xlabel(r'$k$' + ' [Mpc' + r'$^{-1}$' + ']')
 plt.ylabel(r'$\Theta_\ell$')
-plt.tight_layout()
 plt.legend()
 plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M4/theta_ell.png')
 plt.show()
 
-'''
+
 for i in range(5):
     plt.plot(kcH0,theta_values[i]**2/k_theta,label=theta_label[i])
 
@@ -92,4 +92,3 @@ plt.ylabel(r'$P(k)[(Mpc/h)^3]$')
 plt.legend()
 plt.savefig('/Users/andreaswetzel/Documents/Master_Astro/2_semester/AST5220/AST5220-Cosmology/Figures_M4/MPS.png')
 plt.show()
-'''

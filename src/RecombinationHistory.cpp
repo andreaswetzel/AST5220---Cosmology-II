@@ -187,13 +187,13 @@ std::pair<double,double> RecombinationHistory::electron_fraction_from_saha_equat
   //...
   //...
   //Solution from Saha eq.
-  double c = 1/ n_H * pow(m_e*k_b*T_b / (2*M_PI*pow(hbar,2)),3.0/2.0) * exp(-epsilon_0/(k_b*T_b));
+  double c = 1.0/ n_H * pow(m_e*k_b*T_b / (2.0*M_PI*pow(hbar,2.0)),3.0/2.0) * exp(-epsilon_0/(k_b*T_b));
 
   if(c > 1e14){
-    Xe = 1 + a/2;
+    Xe = 2.0/(sqrt(1.0+4.0/c)+1);
   }
   else{
-    Xe = -c/2 + sqrt(pow(c, 2) + 4*c)/2;
+    Xe = -c/2.0 + sqrt(pow(c, 2.0) + 4.0*c)/2.0;
   }
 
   ne = Xe*n_H;
